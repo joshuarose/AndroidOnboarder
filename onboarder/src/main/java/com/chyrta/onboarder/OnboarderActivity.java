@@ -1,7 +1,6 @@
 package com.chyrta.onboarder;
 
 import android.animation.ArgbEvaluator;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,14 +15,14 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
-import com.chyrta.onboarder.utils.ColorsArrayBuilder;
+import com.chyrta.onboarder.utils.BackgroundArrayBuilder;
 import com.chyrta.onboarder.views.CircleIndicatorView;
 
 import java.util.List;
 
 public abstract class OnboarderActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
-    private Integer[] colors;
+    private Integer[] backgrounds;
     private CircleIndicatorView circleIndicatorView;
     private ViewPager vpOnboarderPager;
     private OnboarderAdapter onboarderAdapter;
@@ -62,7 +61,7 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
     public void setOnboardPagesReady(List<OnboarderPage> pages) {
         onboarderAdapter = new OnboarderAdapter(pages, getSupportFragmentManager());
         vpOnboarderPager.setAdapter(onboarderAdapter);
-        colors = ColorsArrayBuilder.getPageBackgroundColors(this, pages);
+        backgrounds = BackgroundArrayBuilder.getPageBackgrounds(pages);
         circleIndicatorView.setPageIndicators(pages.size());
     }
 
@@ -145,16 +144,16 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if(position < (onboarderAdapter.getCount() - 1) && position < (colors.length - 1)) {
-            vpOnboarderPager.setBackgroundColor((Integer) evaluator.evaluate(positionOffset, colors[position], colors[position + 1]));
+        if(position < (onboarderAdapter.getCount() - 1) && position < (backgrounds.length - 1)) {
+            vpOnboarderPager.setBackgroundColor((Integer) evaluator.evaluate(positionOffset, backgrounds[position], backgrounds[position + 1]));
             if (shouldDarkenButtonsLayout) {
-                buttonsLayout.setBackgroundColor(darkenColor((Integer) evaluator.evaluate(positionOffset, colors[position], colors[position + 1])));
+                buttonsLayout.setBackgroundColor(darkenColor((Integer) evaluator.evaluate(positionOffset, backgrounds[position], backgrounds[position + 1])));
                 divider.setVisibility(View.GONE);
             }
         } else {
-            vpOnboarderPager.setBackgroundColor(colors[colors.length - 1]);
+            vpOnboarderPager.setBackgroundColor(backgrounds[backgrounds.length - 1]);
             if(shouldDarkenButtonsLayout) {
-                buttonsLayout.setBackgroundColor(darkenColor(colors[colors.length - 1]));
+                buttonsLayout.setBackgroundColor(darkenColor(backgrounds[backgrounds.length - 1]));
                 divider.setVisibility(View.GONE);
             }
         }

@@ -21,9 +21,9 @@ public class IntroActivity extends OnboarderActivity {
         OnboarderPage onboarderPage2 = new OnboarderPage("Venus", "The love goddess", R.drawable.planet2);
         OnboarderPage onboarderPage3 = new OnboarderPage("Mars", "Say hi to Curiosity!", R.drawable.planet3);
 
-        onboarderPage1.setBackgroundColor(R.color.onboarder_bg_1);
-        onboarderPage2.setBackgroundColor(R.color.onboarder_bg_2);
-        onboarderPage3.setBackgroundColor(R.color.onboarder_bg_3);
+        onboarderPage1.setBackground(R.color.onboarder_bg_1);
+        onboarderPage2.setBackground(R.color.onboarder_bg_2);
+        onboarderPage3.setBackground(R.color.onboarder_bg_3);
 
         List<OnboarderPage> pages = new ArrayList<>();
 

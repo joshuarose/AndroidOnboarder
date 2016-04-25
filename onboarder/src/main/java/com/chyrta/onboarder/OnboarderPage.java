@@ -1,8 +1,12 @@
 package com.chyrta.onboarder;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AnyRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
+import android.support.annotation.IntegerRes;
+import android.support.annotation.RawRes;
 import android.support.annotation.StringRes;
 
 public class OnboarderPage {
@@ -15,46 +19,46 @@ public class OnboarderPage {
     @DrawableRes public int imageResourceId;
     @ColorRes public int titleColor;
     @ColorRes public int descriptionColor;
-    @ColorRes public int backgroundColor;
+    @AnyRes public int background;
 
     public OnboarderPage(String title, String description) {
         this.title = title;
         this.description = description;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
-    public OnboarderPage(String title, String description, int imageResourceId) {
+    public OnboarderPage(String title, String description, @DrawableRes int imageResourceId) {
         this.title = title;
         this.description = description;
         this.imageResourceId = imageResourceId;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
     public OnboarderPage(String title, String description, Drawable imageResource) {
         this.title = title;
         this.description = description;
         this.imageResource = imageResource;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
-    public OnboarderPage(int title, int description) {
+    public OnboarderPage(@StringRes int title, @StringRes int description) {
         this.titleResourceId = title;
         this.descriptionResourceId = description;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
     public OnboarderPage(int title, int description, int imageResourceId) {
         this.titleResourceId = title;
         this.descriptionResourceId = description;
         this.imageResourceId = imageResourceId;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
-    public OnboarderPage(int title, int description, Drawable imageResource) {
+    public OnboarderPage(@StringRes int title, @StringRes int description, Drawable imageResource) {
         this.titleResourceId = title;
         this.descriptionResourceId = description;
         this.imageResource = imageResource;
-        this.backgroundColor = R.color.black_transparent;
+        this.background = R.color.black_transparent;
     }
 
     public String getTitle() {
@@ -69,39 +73,39 @@ public class OnboarderPage {
         return description;
     }
 
-    public int getDescriptionResourceId() {
+    public @StringRes int getDescriptionResourceId() {
         return descriptionResourceId;
     }
 
-    public int getTitleColor() {
+    public @ColorRes int getTitleColor() {
         return titleColor;
     }
 
-    public int getDescriptionColor() {
+    public @ColorRes int getDescriptionColor() {
         return descriptionColor;
     }
 
-    public void setTitleColor(int color) {
+    public void setTitleColor(@ColorRes int color) {
         this.titleColor = color;
     }
 
-    public void setDescriptionColor(int color) {
+    public void setDescriptionColor(@ColorRes int color) {
         this.descriptionColor = color;
     }
 
-    public void setImageResourceId(int imageResourceId) {
+    public void setImageResourceId(@DrawableRes int imageResourceId) {
         this.imageResourceId = imageResourceId;
     }
 
-    public int getImageResourceId() {
+    public @DrawableRes int getImageResourceId() {
         return imageResourceId;
     }
 
-    public void setBackgroundColor(int backgroundColor) {
-        this.backgroundColor = backgroundColor;
+    public void setBackground(@AnyRes int background) {
+        this.background = background;
     }
 
-    public int getBackgroundColor() {
-        return backgroundColor;
+    public @AnyRes int getBackground() {
+        return background;
     }
 }
